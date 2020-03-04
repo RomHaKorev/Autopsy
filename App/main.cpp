@@ -5,9 +5,6 @@
 
 int main(int argc, char *argv[])
 {
-	Lexer l;
-
-	return 0;
 	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
 	QGuiApplication app(argc, argv);

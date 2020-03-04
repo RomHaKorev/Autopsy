@@ -14,6 +14,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        compilerinterface.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -36,3 +37,6 @@ else:unix: LIBS += -L$$OUT_PWD/../Compiler/ -lCompiler
 
 INCLUDEPATH += $$PWD/../Compiler
 DEPENDPATH += $$PWD/../Compiler
+
+HEADERS += \
+    compilerinterface.h

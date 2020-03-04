@@ -18,12 +18,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     lexer.cpp \
-    tokens/litteral.cpp
+    tokens/token.cpp
 
 HEADERS += \
     lexer.h \
     tokens/assessable.h \
-    tokens/litteral.h
+    tokens/token.h
 
 # Default rules for deployment.
 unix {
