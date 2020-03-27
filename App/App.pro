@@ -1,4 +1,4 @@
-QT += quick
+QT += quick gui
 
 CONFIG += c++11
 
@@ -15,7 +15,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         compilerinterface.cpp \
-        main.cpp
+        lexerview.cpp \
+        main.cpp \
+        syntaxhighlighter.cpp
 
 RESOURCES += qml.qrc
 
@@ -39,4 +41,6 @@ INCLUDEPATH += $$PWD/../Compiler
 DEPENDPATH += $$PWD/../Compiler
 
 HEADERS += \
-    compilerinterface.h
+    compilerinterface.h \
+    lexerview.h \
+    syntaxhighlighter.h

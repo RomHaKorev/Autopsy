@@ -27,14 +27,7 @@ private:
 };
 
 
-std::ostream& operator<<(std::ostream& os, std::list<Token> const& list)
-{
-	for (Token const& token : list)
-	{
-		os << token << std::endl;
-	}
-	return os;
-}
+std::ostream& operator<<(std::ostream& os, std::list<Token> const& list);
 
 class Source
 {

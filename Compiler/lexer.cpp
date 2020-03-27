@@ -3,6 +3,16 @@
 #include <algorithm>
 #include <iostream>
 
+std::ostream& operator<<(std::ostream& os, std::list<Token> const& list)
+{
+	for (Token const& token : list)
+	{
+		os << token << std::endl;
+	}
+	return os;
+}
+
+
 Lexer::Lexer()
 {
 }
@@ -24,7 +34,6 @@ Lexer& Lexer::operator<<(std::string code)
 		if(!ok)
 			throw IllegalCharacterException(source.line(), source.column(), source.current());
 	}
-	std::cout << m_tokens;
 	return *this;
 }
 
