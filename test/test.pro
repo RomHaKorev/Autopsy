@@ -6,7 +6,10 @@ CONFIG -= qt
 SOURCES += \
         main.cpp
 
-LIBS += -L$$PWD/../../thirdParty/lib/googletest/lib/ -lgtest
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../thirdParty/lib/googletest/lib/ -lgtest
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../thirdParty/lib/googletest/lib/ -lgtestd
+else:unix: LIBS += -L$$PWD/../../thirdParty/lib/googletest/lib/ -lgtest
+
 
 INCLUDEPATH += $$PWD/../../thirdParty/src/googletest/googletest/include/
 DEPENDPATH += $$PWD/../../thirdParty/src/googletest/googletest/include/
