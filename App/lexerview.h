@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include "tokens/token.h"
+#include "lexical/tokens/token.h"
 
 class QQuickTextDocument;
 class Lexer;
