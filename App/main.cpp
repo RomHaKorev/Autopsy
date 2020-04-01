@@ -1,7 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
-#include <lexer.h>
+#include <lexical/lexer.h>
 
 #include "syntaxhighlighter.h"
 #include "lexerview.h"

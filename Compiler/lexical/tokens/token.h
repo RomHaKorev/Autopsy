@@ -18,6 +18,8 @@ struct Position
 	Position(Position const&) = default;
 };
 
+std::ostream& operator<<(std::ostream&, Position const& position);
+
 struct Token
 {
 public:

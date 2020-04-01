@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include <lexer.h>
+#include <lexical/lexer.h>
 
 class CompilerInterface : public QObject
 {

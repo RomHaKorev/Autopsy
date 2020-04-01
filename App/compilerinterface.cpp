@@ -1,7 +1,7 @@
 #include "compilerinterface.h"
 
 #include <QDebug>
-#include "illegalcharacterexception.h"
+#include "exceptions/illegalcharacterexception.h"
 
 CompilerInterface::CompilerInterface(QObject *parent) : QObject(parent)
 {

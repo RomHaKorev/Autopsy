@@ -6,19 +6,19 @@
 #include <QTextBlock>
 #include <QTextDocumentFragment>
 
-#include <lexer.h>
-#include <tokens/token.h>
+#include <lexical/lexer.h>
+#include <lexical/tokens/token.h>
 
 
-static QColor colorFor(Type type)
+static QColor colorFor(TokenType type)
 {
 	switch(type)
 	{
-	case Type::Number:
+	case TokenType::Number:
 		return QColor(42, 128, 151);
-	case Type::String:
+	case TokenType::String:
 		return QColor(245, 104, 60);
-	case Type::Operator:
+	case TokenType::Operator:
 		return QColor(42, 152, 232);
 	}
 	return QColor(80, 80, 80);
