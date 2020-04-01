@@ -1,10 +1,10 @@
-#ifndef NUMBER_H
-#define NUMBER_H
+#ifndef TOKEN_H
+#define TOKEN_H
 
 #include <string>
 
 
-enum Type {
+enum TokenType {
 	Number = 0,
 	String,
 	Operator
@@ -21,13 +21,13 @@ struct Position
 struct Token
 {
 public:
-	Token(Type type, std::string const& value, Position const& position);
+	Token(TokenType type, std::string const& value, Position const& position);
 	friend std::ostream& operator<<(std::ostream& os, Token const& token);
 	bool operator==(Token const& other) const;
 
-	Type const type;
+	TokenType const type;
 	std::string const value;
 	Position const position;
 };
 
-#endif // NUMBER_H
+#endif // TOKEN_H

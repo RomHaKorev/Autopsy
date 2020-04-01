@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <iostream>
 
-#include "illegalcharacterexception.h"
+#include "exceptions/illegalcharacterexception.h"
 
 std::ostream& operator<<(std::ostream& os, std::list<Token> const& list)
 {
@@ -56,7 +56,7 @@ bool Lexer::consumeNumber(Source& source)
 	  word += n;
 	  n = source.consume();
 	}
-	m_tokens << Token(Type::Number, word, Position(source.line(), column));
+	m_tokens << Token(TokenType::Number, word, Position(source.line(), column));
 
 	return true;
 }
@@ -72,7 +72,7 @@ bool Lexer::consumeOperator(Source& source)
 
 	word += n;
 	n = source.consume();
-	m_tokens << Token(Type::Operator, word, Position(source.line(), source.column() - word.size()));
+	m_tokens << Token(TokenType::Operator, word, Position(source.line(), source.column() - word.size()));
 	return true;
 
 

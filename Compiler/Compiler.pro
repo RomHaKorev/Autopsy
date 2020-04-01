@@ -17,17 +17,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    lexer.cpp \
-    tokens/token.cpp \
-    parser.cpp \
-    illegalcharacterexception.cpp
+    lexical/lexer.cpp \
+    lexical/tokens/token.cpp \
+    syntaxic/parser.cpp \
+    exceptions/illegalcharacterexception.cpp \
+    lexical/source.cpp
 
 HEADERS += \
-    lexer.h \
-    tokens/assessable.h \
-    tokens/token.h \
-    parser.h \
-    illegalcharacterexception.h
+    lexical/lexer.h \
+    lexical/tokens/assessable.h \
+    lexical/tokens/token.h \
+    syntaxic/parser.h \
+    exceptions/illegalcharacterexception.h \
+    lexical/source.h
 
 # Default rules for deployment.
 unix {
