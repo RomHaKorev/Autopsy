@@ -5,19 +5,37 @@
 #include <QSyntaxHighlighter>
 
 class QQuickTextDocument;
+class SyntaxHighlighterPrivate;
 
-class SyntaxHighlighter : public QSyntaxHighlighter
+class SyntaxHighlighter : public QObject
 {
 	Q_OBJECT
 	Q_PROPERTY(QQuickTextDocument* document READ document WRITE setTextDocument)
+	Q_PROPERTY(bool enabled READ getEnabled WRITE setEnabled)
 public:
-	explicit SyntaxHighlighter(QObject* parent=nullptr);
-	QQuickTextDocument* document() const;
-	void setTextDocument(QQuickTextDocument* document);
+	SyntaxHighlighter();
+	Q_INVOKABLE QQuickTextDocument* document() const;
+	Q_INVOKABLE void setTextDocument(QQuickTextDocument* document);
+
+	Q_INVOKABLE void setEnabled(bool value);
+	Q_INVOKABLE bool getEnabled() const;
+private:
+	SyntaxHighlighterPrivate* highlighter;
+	QQuickTextDocument* textDocument;
+
+signals:
+	void enabledChanged();
+};
+
+class SyntaxHighlighterPrivate : public QSyntaxHighlighter
+{
+public:
+	SyntaxHighlighterPrivate(QObject* parent=nullptr);
+	void setEnabled(bool value);
+	bool getEnabled() const;
 private:
 	void highlightBlock(QString const& text);
 
-	QQuickTextDocument* textDocument;
 
 	struct HighlightingRule
 	{
@@ -26,7 +44,10 @@ private:
 		QRegExp pattern;
 		QTextCharFormat format;
 	};
+
 	QList<HighlightingRule> highlightingRules;
+
+	bool enabled;
 
 	/*QTextCharFormat formatMC0; //Format des mots-clés bleu et gras
 	QTextCharFormat formatMC1; //Format des mots-clés noir et gras

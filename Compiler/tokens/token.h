@@ -12,20 +12,22 @@ enum Type {
 
 struct Position
 {
-	int line;
-	int column;
-	Position(int l, int c): line(l), column(c){}
+	unsigned long line;
+	unsigned long column;
+	Position(unsigned long l, unsigned long c): line(l), column(c){}
+	Position(Position const&) = default;
 };
 
-class Token
+struct Token
 {
 public:
 	Token(Type type, std::string const& value, Position const& position);
 	friend std::ostream& operator<<(std::ostream& os, Token const& token);
 	bool operator==(Token const& other) const;
-private:
-	Type type;
+
+	Type const type;
 	std::string const value;
+	Position const position;
 };
 
 #endif // NUMBER_H

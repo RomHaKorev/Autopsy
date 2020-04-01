@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/lexical.png</file>
+        <file>resources/reset.png</file>
+        <file>resources/syntaxic.png</file>
+        <file>resources/interpret.png</file>
+    </qresource>
+</RCC>

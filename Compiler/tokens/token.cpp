@@ -3,8 +3,8 @@
 
 #include <ostream>
 
-Token::Token(Type type, std::string const& value):
-	type(type), value(value)
+Token::Token(Type type, std::string const& value, Position const& position):
+	type(type), value(value), position(position)
 {
 }
 

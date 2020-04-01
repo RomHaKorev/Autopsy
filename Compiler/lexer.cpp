@@ -23,6 +23,20 @@ std::list<Token>& operator<<(std::list<Token>& list, Token const t)
 	return list;
 }
 
+
+
+IllegalCharacterException::IllegalCharacterException(unsigned long line, unsigned long column, char c)
+{
+	std::stringstream ss;
+	ss << "Illegal character '" << c << "' at line " << line + 1 << ", column " << column + 1;
+	message = ss.str();
+}
+
+const char * IllegalCharacterException::what () const noexcept {
+
+	return message.c_str();
+}
+
 Lexer& Lexer::operator<<(std::string code)
 {
 	Source source(code);
@@ -45,12 +59,13 @@ bool Lexer::consumeNumber(Source& source)
 		return false;
 
 	std::string word = "";
+	auto column = source.column();
 	while (!source.end() && n >= '0' && n <= '9')
 	{
 	  word += n;
 	  n = source.consume();
 	}
-	m_tokens << Token(Type::Number, word);
+	m_tokens << Token(Type::Number, word, Position(source.line(), column));
 
 	return true;
 }
@@ -66,7 +81,7 @@ bool Lexer::consumeOperator(Source& source)
 
 	word += n;
 	n = source.consume();
-	m_tokens << Token(Type::Operator, word);
+	m_tokens << Token(Type::Operator, word, Position(source.line(), source.column() - word.size()));
 	return true;
 
 

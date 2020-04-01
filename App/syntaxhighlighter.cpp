@@ -5,12 +5,9 @@
 
 #include <QQuickTextDocument>
 
-SyntaxHighlighter::SyntaxHighlighter(QObject *parent) : QSyntaxHighlighter(parent)
-{
-	QTextCharFormat formatNumber;
-	formatNumber.setForeground(QColor(0, 153, 255));
-	highlightingRules.append(HighlightingRule(QRegExp("\\b\\d+\\b"), formatNumber));
-}
+SyntaxHighlighter::SyntaxHighlighter(): QObject(),
+		highlighter(new SyntaxHighlighterPrivate(this))
+	{}
 
 
 QQuickTextDocument* SyntaxHighlighter::document() const
@@ -21,12 +18,38 @@ QQuickTextDocument* SyntaxHighlighter::document() const
 void SyntaxHighlighter::setTextDocument(QQuickTextDocument* document)
 {
 	textDocument = document;
-	this->setDocument(textDocument->textDocument());
+	highlighter->setDocument(textDocument->textDocument());
+}
+
+void SyntaxHighlighter::setEnabled(bool value)
+{
+	if (value == highlighter->getEnabled())
+		return;
+
+	highlighter->setEnabled(value);
+	emit enabledChanged();
+
+	highlighter->rehighlight();
+
+}
+
+bool SyntaxHighlighter::getEnabled() const
+{
+	return highlighter->getEnabled();
+}
+
+SyntaxHighlighterPrivate::SyntaxHighlighterPrivate(QObject *parent) : QSyntaxHighlighter(parent), enabled(true)
+{
+	QTextCharFormat formatNumber;
+	formatNumber.setForeground(QColor(0, 153, 255));
+	highlightingRules.append(HighlightingRule(QRegExp("\\b\\d+\\b"), formatNumber));
 }
 
 
-void SyntaxHighlighter::highlightBlock(QString const& text)
+void SyntaxHighlighterPrivate::highlightBlock(QString const& text)
 {
+	if (!enabled)
+		return;
 	foreach (const HighlightingRule &rule, highlightingRules) {
 		QRegExp expression(rule.pattern);
 		int index = expression.indexIn(text);
@@ -37,4 +60,15 @@ void SyntaxHighlighter::highlightBlock(QString const& text)
 		}
 	}
    setCurrentBlockState(0);
+}
+
+
+void SyntaxHighlighterPrivate::setEnabled(bool value)
+{
+	enabled = value;
+}
+
+bool SyntaxHighlighterPrivate::getEnabled() const
+{
+	return enabled;
 }

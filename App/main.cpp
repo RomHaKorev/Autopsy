@@ -7,6 +7,8 @@
 #include "lexerview.h"
 #include "compilerinterface.h"
 
+#include <iostream>
+
 int main(int argc, char *argv[])
 {
 	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -16,6 +18,8 @@ int main(int argc, char *argv[])
 	qmlRegisterType<SyntaxHighlighter>("App", 1, 0, "SyntaxHighlighter");
 	qmlRegisterType<LexerView>("App", 1, 0, "LexerView");
 	qmlRegisterType<CompilerInterface>("App", 1, 0, "Compiler");
+
+	qRegisterMetaType<Lexer const*>("Lexer const*");
 
 	QQmlApplicationEngine engine;
 	const QUrl url(QStringLiteral("qrc:/main.qml"));

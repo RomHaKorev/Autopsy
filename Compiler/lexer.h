@@ -11,17 +11,9 @@
 
 class IllegalCharacterException: public std::exception {
 public:
-	IllegalCharacterException(int line, int column, char c)
-	{
-		std::stringstream ss;
-		ss << "Illegal character '" << c << "' at line " << line << ", column " << column;
-		message = ss.str();
-	}
+	IllegalCharacterException(unsigned long line, unsigned long column, char c);
 
-	const char * what () const throw () {
-
-		return message.c_str();
-	}
+	const char * what () const noexcept;
 private:
 	std::string message;
 };
@@ -33,15 +25,15 @@ class Source
 {
 public:
 	Source(std::string const& src):
-		m_source(src), m_it(m_source.begin()), m_line(1), m_column(1)
+		m_source(src), m_it(m_source.begin()), m_line(0), m_column(0)
 	{}
 
-	int line() const
+	unsigned long line() const
 	{
 		return m_line;
 	}
 
-	int column() const
+	unsigned long column() const
 	{
 		return m_column;
 	}
@@ -55,7 +47,7 @@ public:
 	{
 		if (*m_it == '\n')
 		{
-			m_column = 1;
+			m_column = 0;
 			++m_line;
 		}
 		else
@@ -72,8 +64,8 @@ public:
 private:
 	std::string m_source;
 	std::string::const_iterator m_it;
-	int m_line;
-	int m_column;
+	unsigned long m_line;
+	unsigned long m_column;
 };
 
 class Lexer

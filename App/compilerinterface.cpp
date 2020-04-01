@@ -1,12 +1,31 @@
 #include "compilerinterface.h"
 
+#include <QDebug>
+#include <exception>
+
 CompilerInterface::CompilerInterface(QObject *parent) : QObject(parent)
 {
 
 }
 
 
-void CompilerInterface::parse(const QString &content)
+void CompilerInterface::tokenize(const QString &content)
 {
-	lexer << content.toStdString();
+	try {
+		lexer << content.toStdString();
+		emit lexerChanged();
+	} catch(IllegalCharacterException exception)
+	{
+		emit error(exception.what());
+	}
+}
+
+void CompilerInterface::parse()
+{
+	try {
+
+	} catch(std::exception exception)
+	{
+		emit error(exception.what());
+	}
 }
