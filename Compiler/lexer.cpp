@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <iostream>
 
+#include "illegalcharacterexception.h"
+
 std::ostream& operator<<(std::ostream& os, std::list<Token> const& list)
 {
 	for (Token const& token : list)
@@ -25,17 +27,6 @@ std::list<Token>& operator<<(std::list<Token>& list, Token const t)
 
 
 
-IllegalCharacterException::IllegalCharacterException(unsigned long line, unsigned long column, char c)
-{
-	std::stringstream ss;
-	ss << "Illegal character '" << c << "' at line " << line + 1 << ", column " << column + 1;
-	message = ss.str();
-}
-
-const char * IllegalCharacterException::what () const noexcept {
-
-	return message.c_str();
-}
 
 Lexer& Lexer::operator<<(std::string code)
 {

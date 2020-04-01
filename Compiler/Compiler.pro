@@ -19,13 +19,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     lexer.cpp \
     tokens/token.cpp \
-    parser.cpp
+    parser.cpp \
+    illegalcharacterexception.cpp
 
 HEADERS += \
     lexer.h \
     tokens/assessable.h \
     tokens/token.h \
-    parser.h
+    parser.h \
+    illegalcharacterexception.h
 
 # Default rules for deployment.
 unix {
