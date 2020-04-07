@@ -45,38 +45,12 @@ Lexer& Lexer::operator<<(std::string code)
 
 bool Lexer::consumeNumber(Source& source)
 {
-	char n = source.current();
-
-	if (!(n >= '0' && n <= '9'))
-		return false;
-
-	std::string word = "";
-	auto column = source.column();
-	while (!source.end() && n >= '0' && n <= '9')
-	{
-	  word += n;
-	  n = source.consume();
-	}
-	m_tokens << Token(TokenType::Number, word, Position(source.line(), column));
-
-	return true;
+	return false;
 }
 
 bool Lexer::consumeOperator(Source& source)
 {
-
-	std::string word = "";
-	char n = source.current();
-
-	if (!( n == '=' || n == '+' || n == '-' || n == '*' || n == '/' || n == '<' || n == '>'))
-		return false;
-
-	word += n;
-	n = source.consume();
-	m_tokens << Token(TokenType::Operator, word, Position(source.line(), source.column() - word.size()));
-	return true;
-
-
+	return false;
 }
 
 void Lexer::consumeSkippedCharacters(Source& source)

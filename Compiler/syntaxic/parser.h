@@ -15,7 +15,6 @@ private:
 	TokenStack tokens;
 
 	void operation();
-	void operand();
 };
 
 #endif // PARSER_H
