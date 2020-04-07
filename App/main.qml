@@ -49,6 +49,7 @@ ApplicationWindow  {
                         label: "Reset"
                         onClicked: {
                             buttonSyntax.enabled = false;
+                            buttonInterpret.enabled = false;
                             highlighter.enabled = true;
                             codeEditor.readOnly = false;
                             codeEditor.reset();

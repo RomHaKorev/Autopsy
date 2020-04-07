@@ -24,12 +24,14 @@ struct Token
 {
 public:
 	Token(TokenType type, std::string const& value, Position const& position);
+	Token& operator=(Token const&) = default;
+
 	friend std::ostream& operator<<(std::ostream& os, Token const& token);
 	bool operator==(Token const& other) const;
 
-	TokenType const type;
-	std::string const value;
-	Position const position;
+	TokenType type;
+	std::string value;
+	Position position;
 };
 
 #endif // TOKEN_H

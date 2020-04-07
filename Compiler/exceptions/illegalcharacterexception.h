@@ -7,7 +7,7 @@ class IllegalCharacterException: public std::exception {
 public:
 	IllegalCharacterException(unsigned long line, unsigned long column, char c);
 
-	const char * what () const noexcept;
+	virtual const char * what () const noexcept;
 private:
 	std::string message;
 };

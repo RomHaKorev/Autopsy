@@ -30,6 +30,7 @@ std::list<Token>& operator<<(std::list<Token>& list, Token const t)
 
 Lexer& Lexer::operator<<(std::string code)
 {
+	m_tokens.clear();
 	Source source(code);
 	while (!source.end())
 	{
@@ -44,18 +45,50 @@ Lexer& Lexer::operator<<(std::string code)
 
 bool Lexer::consumeNumber(Source& source)
 {
+	char n = source.current();
 
-	// TODO : Not implemented yet
-	return false;
+	if (!(n >= '0' && n <= '9'))
+		return false;
+
+	std::string word = "";
+	auto column = source.column();
+	while (!source.end() && n >= '0' && n <= '9')
+	{
+	  word += n;
+	  n = source.consume();
+	}
+	m_tokens << Token(TokenType::Number, word, Position(source.line(), column));
+
+	return true;
 }
 
 bool Lexer::consumeOperator(Source& source)
 {
-	// TODO : Not implemented yet
-	return false;
+
+	std::string word = "";
+	char n = source.current();
+
+	if (!( n == '=' || n == '+' || n == '-' || n == '*' || n == '/' || n == '<' || n == '>'))
+		return false;
+
+	word += n;
+	n = source.consume();
+	m_tokens << Token(TokenType::Operator, word, Position(source.line(), source.column() - word.size()));
+	return true;
+
+
 }
 
 void Lexer::consumeSkippedCharacters(Source& source)
 {
-	// TODO : Not implemented yet
+	char n = source.current();
+	while (!source.end())
+	{
+		if (n == '\t' || n == ' ' || n == '\n')
+		{
+			n = source.consume();
+		}
+		else
+			break;
+	}
 }

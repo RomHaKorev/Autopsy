@@ -2,6 +2,7 @@
 
 #include <QDebug>
 #include "exceptions/illegalcharacterexception.h"
+#include "exceptions/unexpectedtokenexception.h"
 
 CompilerInterface::CompilerInterface(QObject *parent) : QObject(parent)
 {
@@ -16,6 +17,7 @@ void CompilerInterface::tokenize(const QString &content)
 		emit lexerChanged();
 	} catch(IllegalCharacterException exception)
 	{
+		qDebug() << exception.what();
 		emit error(exception.what());
 	}
 }
@@ -23,9 +25,10 @@ void CompilerInterface::tokenize(const QString &content)
 void CompilerInterface::parse()
 {
 	try {
-
-	} catch(std::exception exception)
+		parser.process(lexer.tokens());
+	} catch(UnexpectedTokenException exception)
 	{
+		qDebug() << exception.what();
 		emit error(exception.what());
 	}
 }

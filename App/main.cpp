@@ -7,8 +7,6 @@
 #include "lexerview.h"
 #include "compilerinterface.h"
 
-#include <iostream>
-
 int main(int argc, char *argv[])
 {
 	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);

@@ -3,13 +3,19 @@
 
 #include "lexical/lexer.h"
 
+#include "tokenstack.h"
+
+
 class Parser
 {
 public:
 	Parser();
-	void process(std::list<Token const> const& tokens);
+	void process(std::list<Token> const& tokens);
 private:
-	std::list<Token const> tokens;
+	TokenStack tokens;
+
+	void operation();
+	void operand();
 };
 
 #endif // PARSER_H

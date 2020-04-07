@@ -4,6 +4,7 @@
 #include <QObject>
 
 #include <lexical/lexer.h>
+#include <syntaxic/parser.h>
 
 class CompilerInterface : public QObject
 {
@@ -18,6 +19,7 @@ public:
 	Q_INVOKABLE Lexer const*  getLexer() const { return &lexer; }
 private:
 	Lexer lexer;
+	Parser parser;
 signals:
 	void lexerChanged();
 	void error(QString const& message);
