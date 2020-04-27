@@ -15,6 +15,7 @@ void CompilerInterface::tokenize(const QString &content)
 	try {
 		lexer << content.toStdString();
 		emit lexerChanged();
+		emit lexerSuccess();
 	} catch(IllegalCharacterException exception)
 	{
 		qDebug() << exception.what();
@@ -26,6 +27,7 @@ void CompilerInterface::parse()
 {
 	try {
 		parser.process(lexer.tokens());
+		emit parserSuccess();
 	} catch(UnexpectedTokenException exception)
 	{
 		qDebug() << exception.what();

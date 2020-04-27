@@ -26,6 +26,11 @@ ApplicationWindow  {
             buttonSyntax.enabled = false;
             logger.addError(message)
         }
+
+        onLexerSuccess: logger.addSuccess("Lexical analysis exited normally.");
+        onParserSuccess: logger.addSuccess("Syntaxic analysis exited normally.")
+
+
     }
 
     RowLayout {
@@ -111,7 +116,7 @@ ApplicationWindow  {
 
                 property string raw: ""
                 id: codeEditor
-                text: "12 == 13"
+                text: "12 + 13"
                 color: "white"
                 background: Rectangle {
                     anchors.fill: parent
@@ -142,6 +147,10 @@ ApplicationWindow  {
 
                 function addError(message) {
                     logger.append("<font color=\"#CC0000\">" + message + "</font>")
+                }
+
+                function addSuccess(message) {
+                    logger.append("<font color=\"#007572\">" + message + "</font>")
                 }
             }
         }

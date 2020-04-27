@@ -23,6 +23,9 @@ private:
 signals:
 	void lexerChanged();
 	void error(QString const& message);
+
+	void lexerSuccess();
+	void parserSuccess();
 };
 
 

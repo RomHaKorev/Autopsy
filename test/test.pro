@@ -4,15 +4,19 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+    testsuite/assertions.cpp \
+    testsuite/testresult.cpp \
+    testsuite/testsuite.cpp \
+    testsuite/notsamesizeexception.cpp
+HEADERS += \
+    testsuite/assertions.h \
+    testsuite/notequalsexception.h \
+    testsuite/testresult.h \
+    testsuite/testsuite.h \
+    testsuite/notsamesizeexception.h \
+    testsuite/notequalsitemexception.h
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../thirdParty/lib/googletest/lib/ -lgtest
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../thirdParty/lib/googletest/lib/ -lgtestd
-else:unix: LIBS += -L$$PWD/../../thirdParty/lib/googletest/lib/ -lgtest
-
-
-INCLUDEPATH += $$PWD/../../thirdParty/src/googletest/googletest/include/
-DEPENDPATH += $$PWD/../../thirdParty/src/googletest/googletest/include/
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../Compiler/release/ -lCompiler
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../Compiler/debug/ -lCompiler

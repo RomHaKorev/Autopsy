@@ -2,7 +2,7 @@
 
 #include <sstream>
 
-UnexpectedTokenException::UnexpectedTokenException(int expected, int actual)
+UnexpectedTokenException::UnexpectedTokenException(TokenType expected, TokenType actual)
 {
 	std::stringstream ss;
 	ss << "Expected " << expected << " but found " << actual;

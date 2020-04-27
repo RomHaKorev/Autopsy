@@ -5,11 +5,12 @@
 #include <exception>
 #include <string>
 
+#include "lexical/tokens/tokentype.h"
 
 class UnexpectedTokenException: public std::exception
 {
 public:
-	UnexpectedTokenException(int expected, int actual);
+	UnexpectedTokenException(TokenType expected, TokenType actual);
 	virtual const char * what () const noexcept;
 
 	std::string message;

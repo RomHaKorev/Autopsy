@@ -23,7 +23,8 @@ SOURCES += \
     exceptions/illegalcharacterexception.cpp \
     lexical/source.cpp \
     syntaxic/tokenstack.cpp \
-    exceptions/unexpectedtokenexception.cpp
+    exceptions/unexpectedtokenexception.cpp \
+    lexical/tokens/tokentype.cpp
 
 HEADERS += \
     lexical/lexer.h \
@@ -33,7 +34,8 @@ HEADERS += \
     exceptions/illegalcharacterexception.h \
     lexical/source.h \
     syntaxic/tokenstack.h \
-    exceptions/unexpectedtokenexception.h
+    exceptions/unexpectedtokenexception.h \
+    lexical/tokens/tokentype.h
 
 # Default rules for deployment.
 unix {

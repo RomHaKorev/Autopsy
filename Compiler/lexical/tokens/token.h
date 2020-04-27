@@ -2,13 +2,7 @@
 #define TOKEN_H
 
 #include <string>
-
-
-enum TokenType {
-	Number = 0,
-	String,
-	Operator
-};
+#include "tokentype.h"
 
 struct Position
 {

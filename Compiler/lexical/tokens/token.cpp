@@ -25,4 +25,5 @@ std::ostream& operator<<(std::ostream& os, Token const& token)
 std::ostream &operator<<(std::ostream& os, const Position &position)
 {
 	os << position.line << "; " << position.column;
+	return os;
 }
